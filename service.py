@@ -18,18 +18,24 @@ def multiply(first_num: int, second_num: int) -> int:
     return first_num * second_num
 
 
+def unpack_data(data):
+    first_num, second_num = data["inputs"].values()
+    operator = data["operator"]
+    return first_num, second_num, operator
+
+
 class OperationService:
 
     @staticmethod
     def calculate(data):
-        print(data)
-        # if operator == "+":
-        #     return add(first_num, last_num)
-        # elif operator == "-":
-        #     return add(first_num, last_num)
-        # elif operator == "*":
-        #     return add(first_num, last_num)
-        # elif operator == "/":
-        #     return add(first_num, last_num)
-        # else:
-        #     return "Invalid Parameters"
+        first_num, second_num, operator = unpack_data(data)
+        if operator == "+":
+            return add(first_num, second_num)
+        elif operator == "-":
+            return subtract(first_num, second_num)
+        elif operator == "*":
+            return multiply(first_num, second_num)
+        elif operator == "/":
+            return divide(first_num, second_num)
+        else:
+            return "Invalid Parameters"

@@ -10,11 +10,11 @@ cors = CORS(app, resources={"/api/operations": {"origins": "*"}})
 
 class OperationsApi(MethodView):
     """/api/operations"""
+
     @staticmethod
-    def get():
-        print("this is getting called")
+    def post():  # using post method as axios cannot carry data in GET request
         result = OperationService.calculate(data=request.json)
-        if isinstance(result, int):
+        if isinstance(result, int) or isinstance(result, float):
             return make_response(jsonify(result), 200)
         return make_response(jsonify(result), 400)
 
